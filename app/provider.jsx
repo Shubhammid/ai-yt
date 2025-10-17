@@ -7,7 +7,7 @@ import { UserDetailContext } from "./_context/UserDetailContext";
 
 function Provider({ children }) {
   const { user } = useUser();
-  const [userDetail, setUserDetail] = useState([]);
+  const [userDetail, setUserDetail] = useState({});
 
   useEffect(() => {
     user && saveUserInfo();
