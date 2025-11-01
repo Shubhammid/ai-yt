@@ -7,6 +7,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import React, { useContext } from "react";
+import CreateButton from "./CreateButton";
 
 function SideBar() {
   const menuOption = [
@@ -38,6 +39,7 @@ function SideBar() {
       </div>
 
       <ul className="mt-10">
+        <CreateButton />
         {menuOption.map((item, index) => (
           <Link href={item.path} key={index}>
             <li
