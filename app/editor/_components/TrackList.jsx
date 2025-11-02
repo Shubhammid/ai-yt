@@ -19,10 +19,26 @@ function TrackList() {
   const addNewFrame = () => {
     setFrameList((prev) => [...prev, defaultFrame]);
   };
-  const removeFrame = (indexToRemove) => {};
+  const removeFrame = (indexToRemove) => {
+    const updatedFrameList = frameList?.filter(
+      (_, index) => index !== indexToRemove
+    );
+    setFrameList(updatedFrameList);
+  };
   return (
-    <div className="p-5 bg-gray-100 rounded-lg">
-      <div>
+    <div className="p-4 bg-gray-100 rounded-lg">
+      <div
+        className="h-[70vh] overflow-auto"
+        style={{
+          scrollbarWidth: "none",
+          msOverflowStyle: "none",
+        }}
+      >
+        <style jsx>{`
+          div::-webkit-scrollbar {
+            display: none;
+          }
+        `}</style>{" "}
         {frameList.map((frame, index) => (
           <div
             key={index}
@@ -40,7 +56,7 @@ function TrackList() {
               height={40}
               className="w-full h-[40px] object-contain rounded-lg"
             />
-            <h2 className="text-xs text-gray-700 dark:text-gray-300 text-center mt-2 line-clamp-2">
+            <h2 className="text-xs text-gray-700 dark:text-gray-300 text-center mt-1 line-clamp-2">
               {frame.text}
             </h2>
             {selectedFrame === index && (
@@ -57,7 +73,7 @@ function TrackList() {
           className="mt-6 w-full bg-orange-600 hover:bg-orange-700 text-white flex items-center gap-2"
         >
           <PlusCircle className="w-4 h-4" />
-          Add new frame
+          Add
         </Button>
       </div>
     </div>
