@@ -38,10 +38,11 @@ function TrackList() {
 
     setVideoFrames({
       totalDuration: totalDuration,
-      frameList:frameList
+      frameList:frameList,
+      selectedFrame:selectedFrame
     });
 
-  }, [frameList]);
+  }, [frameList,selectedFrame]);
 
   return (
     <div className="p-4 bg-gray-100 rounded-lg">
