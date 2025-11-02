@@ -48,8 +48,8 @@ function RemotionPlayer() {
             controls
             style={{
               borderRadius: "1rem",
-              overflow: "hidden",
-              boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
+              width:'100%',
+              height:300,
             }}
             inputProps={{
               frameList: videoFrames?.frameList,

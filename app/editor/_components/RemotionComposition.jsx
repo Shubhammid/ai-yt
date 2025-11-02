@@ -1,8 +1,10 @@
 import React from "react";
-import { AbsoluteFill, Sequence } from "remotion";
+import { AbsoluteFill, Sequence, useVideoConfig } from "remotion";
 
 function RemotionComposition({ frameList }) {
   let trackFrame = 0;
+  const { width, height } = useVideoConfig();
+
   return (
     <AbsoluteFill
       style={{
@@ -17,15 +19,19 @@ function RemotionComposition({ frameList }) {
 
         return (
           <Sequence key={index} from={fromFrame} durationInFrames={duration}>
-            <h2
+            <AbsoluteFill
               style={{
-                color: "white",
+                transform: `translateX(${width/2-50}px) translateY(${height/2-30}px)`,
               }}
             >
-              <AbsoluteFill>
-                <h2>{frame.text}</h2>
-              </AbsoluteFill>
-            </h2>
+              <h2
+                style={{
+                  color: "white",
+                }}
+              >
+                {frame.text}
+              </h2>
+            </AbsoluteFill>
           </Sequence>
         );
       })}
