@@ -1,9 +1,10 @@
 "use client";
 
+import { VideoFrameContext } from "@/app/_context/VideoFramesContext";
 import { Button } from "@/components/ui/button";
 import { PlusCircle, Trash2 } from "lucide-react";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useContext, useEffect, useState } from "react";
 
 const defaultFrame = {
   image: "/clapperboard.png",
@@ -16,15 +17,32 @@ const defaultFrame = {
 function TrackList() {
   const [frameList, setFrameList] = useState([defaultFrame]);
   const [selectedFrame, setSelectedFrame] = useState(0);
+  const { videoFrames, setVideoFrames } = useContext(VideoFrameContext);
+
   const addNewFrame = () => {
     setFrameList((prev) => [...prev, defaultFrame]);
   };
+
   const removeFrame = (indexToRemove) => {
     const updatedFrameList = frameList?.filter(
       (_, index) => index !== indexToRemove
     );
     setFrameList(updatedFrameList);
   };
+
+  useEffect(() => {
+    let totalDuration = 0;
+    frameList.forEach(frame => {
+      totalDuration = totalDuration + frame.duration;
+    });
+
+    setVideoFrames({
+      totalDuration: totalDuration,
+      frameList:frameList
+    });
+
+  }, [frameList]);
+
   return (
     <div className="p-4 bg-gray-100 rounded-lg">
       <div
