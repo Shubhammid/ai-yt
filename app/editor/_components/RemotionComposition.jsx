@@ -1,25 +1,34 @@
 import React from "react";
-import { AbsoluteFill } from "remotion";
+import { AbsoluteFill, Sequence } from "remotion";
 
-function RemotionComposition() {
+function RemotionComposition({ frameList }) {
+  let trackFrame = 0;
   return (
     <AbsoluteFill
       style={{
         backgroundColor: "black",
-        justifyContent: "center",
-        alignItems: "center",
-        display: "flex",
       }}
     >
-      <h2
-        style={{
-          color: "white",
-          fontSize: 80,
-          fontWeight: "bold",
-        }}
-      >
-        Hello World 👋
-      </h2>
+      {frameList.map((frame, index) => {
+        const fromFrame = index == 0 ? 0 : trackFrame;
+
+        trackFrame = trackFrame + frame.duration * 30;
+        const duration = frame.duration * 30;
+
+        return (
+          <Sequence key={index} from={fromFrame} durationInFrames={duration}>
+            <h2
+              style={{
+                color: "white",
+              }}
+            >
+              <AbsoluteFill>
+                <h2>{frame.text}</h2>
+              </AbsoluteFill>
+            </h2>
+          </Sequence>
+        );
+      })}
     </AbsoluteFill>
   );
 }

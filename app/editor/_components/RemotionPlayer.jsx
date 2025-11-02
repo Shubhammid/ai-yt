@@ -37,6 +37,9 @@ const [screenSize,setScreenSize]=useState({
             overflow: "hidden",
             boxShadow: "0 4px 20px rgba(0,0,0,0.1)",
           }}
+          inputProps={{
+            frameList:videoFrames?.frameList
+          }}
         />}
       </div>
       <div className="mt-5 flex gap-2 items-center">
