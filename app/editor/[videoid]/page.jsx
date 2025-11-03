@@ -1,8 +1,8 @@
 import React from "react";
-import Header from "../dashboard/_components/Header";
 import { Button } from "@/components/ui/button";
-import TrackList from "./_components/TrackList";
-import RemotionPlayer from "./_components/RemotionPlayer";
+import Header from "@/app/dashboard/_components/Header";
+import TrackList from "../_components/TrackList";
+import RemotionPlayer from "../_components/RemotionPlayer";
 
 function Editor() {
   return (
