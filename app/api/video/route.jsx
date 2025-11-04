@@ -1,5 +1,6 @@
 import { db } from "@/configs/db";
 import { VIDEO_RAW_TABLE } from "@/configs/schema";
+import { eq } from "drizzle-orm";
 import { NextResponse } from "next/server";
 
 export async function POST(req) {
@@ -13,5 +14,19 @@ export async function POST(req) {
     })
     .returning(VIDEO_RAW_TABLE);
 
-  return NextResponse.json({result});
+  return NextResponse.json({ result });
+}
+
+export async function PUT(req) {
+  const { videoId, videoData } = await req.json();
+
+  const result = await db
+    .update(VIDEO_RAW_TABLE)
+    .set({
+      videoData: videoData,
+    })
+    .where(eq(VIDEO_RAW_TABLE.videoId, videoId))
+    .returning(VIDEO_RAW_TABLE);
+
+  return NextResponse.json({ result });
 }

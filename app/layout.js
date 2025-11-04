@@ -2,6 +2,7 @@ import { Onest } from "next/font/google";
 import "./globals.css";
 import { ClerkProvider } from "@clerk/nextjs";
 import Provider from "./provider";
+import { Toaster } from "@/components/ui/sonner";
 
 const onest = Onest({
   subsets: ["latin"],
@@ -18,7 +19,7 @@ export default function RootLayout({ children }) {
     <ClerkProvider>
       <html lang="en" suppressHydrationWarning={true}>
         <body className={onest.className}>
-          <Provider>{children}</Provider>
+          <Provider>{children}  <Toaster />  </Provider>
         </body>
       </html>
     </ClerkProvider>
