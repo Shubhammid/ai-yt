@@ -30,3 +30,16 @@ export async function PUT(req) {
 
   return NextResponse.json({ result });
 }
+
+export async function GET(req) {
+  const { searchParams } = new URL(req.url);
+
+  const videoId = searchParams.get("videoId");
+
+  const result = await db
+    .select()
+    .from(VIDEO_RAW_TABLE)
+    .where(eq(VIDEO_RAW_TABLE.videoId, videoId));
+
+  return NextResponse.json(result[0]);
+}
